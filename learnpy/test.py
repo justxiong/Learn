@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+# coding=utf-8
+def log(text):
+    def decorator(func):
+        print ("begin")
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        print ("end")
+        return wrapper
+    return decorator
+
+
+@log('execute')
+def now():
+    print('2015-3-25')
+
+now()
