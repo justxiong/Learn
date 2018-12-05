@@ -1,0 +1,5 @@
+git push origin master //推送本地当前分支内容到github master
+git pull origin master //拉取远程master分支到本地当前分支
+git clone git@github.com:justxiong/Learn.git    //clone github仓库到本地主机
+
+
