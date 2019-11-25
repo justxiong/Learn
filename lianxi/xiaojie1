@@ -1,0 +1,70 @@
+#!/bin/bash
+
+
+path=$(cd `dirname $0`;pwd)
+#dirname $0得到的是执行脚本目录到脚本所在目录的相对路径,因此表达式得到的是脚本所在目录的绝对路径
+#pre=$path/../
+
+#删除匹配到的行
+sed "/$line/d" -i file
+#删除空白行
+sed "/^$/d" -i file
+
+#数组
+for i in 1 2 3
+do
+    echo $i
+done
+
+xj=("xingjian" "20" "just")
+for i in $xj
+do
+    echo $i
+done
+
+#关联数组
+#数组不支持${list[i]}的下标访问,下表访问需要申明并使用关联数组
+declare -A xj_dic
+xj_dic["name"]="xiongjian"
+xj_dic["age"]="20"
+xj_dic["school"]="just"
+
+#标准for循环根据数组长度下标进行
+for((i=0;i<${#xj_dic[@]};i++))
+do
+    echo ${xj_dic[i]}
+done
+
+#直接获取value
+for i in ${xj_dic[@]}
+do
+    echo $i
+done
+#获取key和value
+for i in ${!xj_dic[@]}
+do
+    echo $i ${xj_dic[$i]}
+done
+
+#按行读取文件
+#echo "" >> file 有时文件结尾在最后一行内容后导致最后一行读取不到
+while read line
+do
+    #子字符串查询,判断"id="是否在line中
+    if [[ $line =~ "id=" ]];then
+        echo $line
+    fi
+done<file
+
+#获得上一条指令执行结果
+grep -rq "$image_id" $tar_path/widget $tar_path/style.xml $solution_path/app/
+if [ $? -ne 0 ];then
+    echo "success"
+fi
+
+#awk使用例子
+cfg_list=$(awk '{if(NF>=3){print $2,$3}else{print $2,"0"}}' 1)
+len=`echo $wnd | awk -F"," '{print NF}'`
+
+
+
