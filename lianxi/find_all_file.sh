@@ -4,10 +4,8 @@
 src=$1
 src_dir=$(cd `dirname $1`; pwd)
 src_file=${src##*/}
-if [[ $src_file == "" ]];then
-    echo "args error. eg solution/app"
-    exit
-fi
+
+echo $src_file
 
 function get_dir_file(){
     for i in $(ls $1)
